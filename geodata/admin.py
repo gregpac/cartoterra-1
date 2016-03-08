@@ -21,10 +21,8 @@ from import_export.admin import ImportExportMixin
 class BuildingIEResource(resources.ModelResource):
 	class Meta:
 		model = Building
-		#skip_row()
 		skip_unchanged = True
 		report_skipped = True
-		#exclude = ('id')
 		#before_import(dataset, dry_run, **kwargs)
 
 #end Import Export
@@ -162,10 +160,6 @@ class BuildingAdmin(ImportExportMixin, GeoDataAbstractAdmin):
     )	
 admin.site.register(Building, BuildingAdmin)
 
-#class BuildingIEAdmin(ImportExportActionModelAdmin):
-#	resource_class = BuildingIEResource
-	
-#admin.site.register(Building, BuildingIEAdmin)
 
 class EventAdmin(GeoDataAbstractAdmin):
     """EarthGeoDataEvent administration interface."""
