@@ -17,13 +17,22 @@ from leaflet.admin import LeafletGeoAdmin
 from import_export import resources
 from import_export import fields
 from import_export.admin import ImportExportMixin
+		
+
 
 class BuildingIEResource(resources.ModelResource):
 	class Meta:
 		model = Building
 		skip_unchanged = True
 		report_skipped = True
-		#before_import(dataset, dry_run, **kwargs)
+		pub_date = fields.Field() #widget=widgets.ForeignKeyWidget(GeoDataAbstract, 'pub_date'))
+		#creator = fields.Field() #widget=widgets.ForeignKeyWidget(GeoDataAbstract, 'creator'))
+		
+		def dehydrate_pub_date(self, GeoDataAbstract):
+			return GeoDataAbstract.pub_date.pub_date
+        
+        #def dehydrate_creator(self, GeoDataAbstract):
+        	#return GeoDataAbstract.creator.creator
 
 #end Import Export
 
