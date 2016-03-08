@@ -187,6 +187,7 @@ INSTALLED_APPS = [
     "imagekit",
     "haystack",
     "leaflet",
+    "import_export",
 
     # theme
     "django_forms_bootstrap",

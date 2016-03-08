@@ -12,6 +12,23 @@ from hvad import admin as hvadadmin
 from imagekit.admin import AdminThumbnail
 from leaflet.admin import LeafletGeoAdmin
 
+#Import Export
+
+from import_export import resources
+from import_export import fields
+from import_export.admin import ImportExportActionModelAdmin
+
+class BuildingIEResource(resources.ModelResource):
+	class Meta:
+		model = Building
+		#skip_row()
+		skip_unchanged = True
+		report_skipped = True
+		#exclude = ('id')
+		#before_import(dataset, dry_run, **kwargs)
+
+#end Import Export
+
 
 class EarthAdmin(admin.ModelAdmin):
     """Modified admin.ModelAdmin (include special AdminImageWidget for the
@@ -124,27 +141,30 @@ admin.site.register(BuildingProtectionStatus, admin.ModelAdmin)
 admin.site.register(EarthQuantity, admin.ModelAdmin)
 
 
-class BuildingAdmin(GeoDataAbstractAdmin):
-    """EarthGeoDataBuilding administration interface."""
-    list_display = ('name', 'pub_date', 'creator', 'credit_creator', 'unesco')
-    list_filter = ('name', 'pub_date', 'creator', 'credit_creator',
-                   'inauguration_date', 'architects', 'techniques', 'unesco',
-                   'stakeholder')
-    search_fields = ['creator__username', 'name', 'techniques', 'architects',
-                     'stakeholder']
-    date_hierarchy = 'pub_date'
-    fieldsets = (
-        ('Location Attributes', {'fields': (('name', 'pub_date',
-                                             'inauguration_date', 'creator',
-                                             'credit_creator', 'architects',
-                                             'techniques', 'stakeholder',
-                                             'unesco', 'description', 'url',
-                                             'contact'))}),
-        ('Editable Map View', {'fields': ('geometry', )}),
-    )
+#class BuildingAdmin(GeoDataAbstractAdmin):
+#    """EarthGeoDataBuilding administration interface."""
+#    list_display = ('name', 'pub_date', 'creator', 'credit_creator', 'unesco')
+#    list_filter = ('name', 'pub_date', 'creator', 'credit_creator',
+#                   'inauguration_date', 'architects', 'techniques', 'unesco',
+#                   'stakeholder')
+#    search_fields = ['creator__username', 'name', 'techniques', 'architects',
+#                     'stakeholder']
+#    date_hierarchy = 'pub_date'
+#    fieldsets = (
+#        ('Location Attributes', {'fields': (('name', 'pub_date',
+#                                             'inauguration_date', 'creator',
+#                                             'credit_creator', 'architects',
+#                                             'techniques', 'stakeholder',
+#                                             'unesco', 'description', 'url',
+#                                            'contact'))}),
+#        ('Editable Map View', {'fields': ('geometry', )}),
+#    )	
+#admin.site.register(Building, BuildingAdmin)
 
-admin.site.register(Building, BuildingAdmin)
-
+class BuildingIEAdmin(ImportExportActionModelAdmin):
+	resource_class = BuildingIEResource
+	
+admin.site.register(Building, BuildingIEAdmin)
 
 class EventAdmin(GeoDataAbstractAdmin):
     """EarthGeoDataEvent administration interface."""
