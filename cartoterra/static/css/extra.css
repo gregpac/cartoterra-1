@@ -267,3 +267,8 @@ body:before {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+/*map side content*/
+.mapcontent {
+  background-color: #ffffff;
+}

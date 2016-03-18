@@ -3,7 +3,7 @@
 
 var map{{ module }} = L.map('{{ module }}_map', { zoomControl: false }).setView([0, 0], 2);
 
-new L.control.zoom({ position: 'topright' }).addTo(map{{ module }});
+new L.control.zoom({ position: 'bottomright' }).addTo(map{{ module }});
 
 var clusterlayer{{ module }} = new L.MarkerClusterGroup();
 
