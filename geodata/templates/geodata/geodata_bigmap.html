@@ -69,9 +69,42 @@
 
 
 <div class="map-toolbox row">
-	<div class=" col-sm-10 col-xs-12">	
-	<div class="geodata-bigmap" id="{{ module }}_map"></div>
+	
+	<div class="col-sm-10 col-xs-12 ">	
+		<div class="geodata-bigmap" id="{{ module }}_map"></div>
 	</div>
+	
+
+	<div class="row row-offcanvas row-offcanvas-right map-overlay">
+		<div class="container-fluid overlay">
+			
+			<p class="pull-right visible-xs button-right-scrollbar">
+            <button type="button" class="btn btn-primary btn-s" data-toggle="offcanvas">
+				<span class="glyphicon glyphicon-camera" aria-hidden="true"></span> {% trans "Images" %}
+			</button>    
+            </p>
+			
+			<div class="col-sm-10 col-xs-12 top-overlay">
+			</div> <!--col-sm-10 col-xs-12-->
+			
+
+			<div class="mapcontent col-sm-2 col-xs-4 sidebar-offcanvas">
+				<img src="{% static "img/index.svg" %}" alt="..." class="img-thumbnail">
+				<img src="{% static "img/index.svg" %}" alt="..." class="img-thumbnail">
+				<ul>
+					{% for building in buildingslist %}
+					<li>{{ building.name }}</li>
+					{% endfor %}
+					</ul>
+				{% for image in geodata.image.all %}
+                        <a href="{{ image.display.url }}" title="{{ image.legend|escape }}"><img max-width=140px; src="{{ im.url }}" alt="" /></a>
+                {% endfor %}
+			</div>
+		
+		
+		</div>	<!--container-fluid-->
+	</div> <!--row row-offcanvas row-offcanvas-right-->
+
 
  <div class="map-overlay">
   {% if not request.user.is_authenticated %}
@@ -82,17 +115,6 @@
       </div>
     </div>
   {% endif %}
-   
-	<div class="row row-offcanvas row-offcanvas-right">
-		<div class="container-fluid cleared-overlay">
-			
-			<p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-s" data-toggle="offcanvas">
-				<span class="glyphicon glyphicon-camera" aria-hidden="true"></span> 
-			</button>
-            </p>
-			
-		<div class="col-sm-10 col-xs-12">
 			
 			<div class="geodata-side-toolbar">
 				<div id="{{ module }}_controls"></div>
@@ -199,17 +221,7 @@
       
 				</div><!--geodata-list panel-group-->
 			</div><!--geodata-side-toolbar-->
-		
-			</div> <!--col-sm-10 col-xs-12-->
-			
-			<div class="mapcontent col-sm-2 col-xs-4 sidebar-offcanvas" id="mapcontent">
-				<img src="{% static "img/index.svg" %}" alt="..." class="img-thumbnail">
-				<img src="{% static "img/index.svg" %}" alt="..." class="img-thumbnail">
-			</div>
-		
-		</div>	<!--container-fluid-->
-	</div> <!--row row-offcanvas row-offcanvas-right-->
+
 </div> <!--map-overlay-->
-<div class="col-sm-2 col-xs-4">	</div>
-</div> <!--map-toolbox-->
+</div><!--map-toolbox-->
 {% endblock %}

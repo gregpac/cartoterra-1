@@ -22,6 +22,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.text import Truncator
 
+    
 
 def _isceah(m):
     if hasattr(m, 'isceah'):

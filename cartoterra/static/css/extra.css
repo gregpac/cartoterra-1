@@ -172,6 +172,7 @@ html, body {
   z-index: 500;
 }
 
+
 body:before {
   content:"";
   height:100%;
@@ -266,9 +267,4 @@ body:before {
   border-bottom: 0;
   padding-top: 0;
   padding-bottom: 0;
-}
-
-/*map side content*/
-.mapcontent {
-  background-color: #ffffff;
 }

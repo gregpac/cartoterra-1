@@ -17,6 +17,23 @@
   top: 0;
 }
 
+.overlay {
+  z-index: 99999;
+  width: 100%;
+  padding-right: 0px;
+  top: 0;
+ }
+
+.top-overlay {
+  z-index: 99999;
+  height: 1px;
+}
+
+.button-right-scrollbar {
+margin-right:0px;
+}
+
+
 .map-toolbox .geodata-side-toolbar {
   position: relative;
 }
@@ -32,7 +49,6 @@
 }
 
 .geodata-bigmap {
-  display: inline-block;
   min-height: 500px;
   width: 100%;
   z-index: 1000;
@@ -74,11 +90,8 @@
 
 /*map side content*/
 .mapcontent {
-  display: inline-block;
-  min-height: 500px; 
+  display: absolute; 
+  min-height: 500px;
   background-color: #ffffff;
 }
 
-.cleared-overlay {
-  z-index: -1;
-}
